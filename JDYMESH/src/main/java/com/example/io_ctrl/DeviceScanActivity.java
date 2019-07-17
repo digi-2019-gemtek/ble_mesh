@@ -18,7 +18,6 @@ package com.example.io_ctrl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -30,6 +29,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,9 +48,10 @@ import android.widget.ToggleButton;
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
  */
-public  class DeviceScanActivity extends Activity implements OnClickListener  {
+public class DeviceScanActivity extends Activity implements OnClickListener  {
    // private LeDeviceListAdapter mLeDeviceListAdapter;
-    private BluetoothAdapter mBluetoothAdapter;
+    private BluetoothManager mBluetoothManager = null;
+    private BluetoothAdapter mBluetoothAdapter = null;
     private boolean mScanning;
     private Handler mHandler;
     
@@ -64,10 +65,10 @@ public  class DeviceScanActivity extends Activity implements OnClickListener  {
 	Button btn_aboutUs;
 	ListView lv_bleList;
 	
-	Timer timer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("DeviceScanActivity", "onCreate_Start"); // Start onCreate
         setContentView(R.layout.activity_main);
         
         //getActionBar().setTitle(R.string.title_devices);
@@ -79,20 +80,16 @@ public  class DeviceScanActivity extends Activity implements OnClickListener  {
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
 
         // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
         // BluetoothAdapter through BluetoothManager.
-        final BluetoothManager bluetoothManager =
-                (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-        mBluetoothAdapter = bluetoothManager.getAdapter();
+
+        checkBluetoothStatus(); // 2019.07.17 Jerry: Bluetooth Check
 
         // Checks if Bluetooth is supported on the device.
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
+
         lv_bleList = (ListView) findViewById(R.id.lv_bleList);
         
 //		//tb_on_off = (ToggleButton) findViewById(R.id.tb_on_off);
@@ -138,7 +135,37 @@ public  class DeviceScanActivity extends Activity implements OnClickListener  {
 				}
 			}
 		});
+        Log.v("DeviceScanActivity", "onCreate_End"); // End onCreate
     }
+
+    public void checkBluetoothStatus(){ // 2019.07.17 Jerry: Because checkBluetoothStatus will use in every time (like onCreate, onResume etc.)
+        Log.v("DeviceScanActivity", "checkBluetoothStatus_Start"); // Start checkBluetoothStatus
+        mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        mBluetoothAdapter = mBluetoothManager.getAdapter();
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else if(!mBluetoothAdapter.isEnabled()) {
+            Toast.makeText(getBaseContext(), R.string.please_open_bt, Toast.LENGTH_SHORT).show();
+            Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBluetooth, REQUEST_ENABLE_BT);
+        }
+        Log.v("DeviceScanActivity", "checkBluetoothStatus_End"); // End checkBluetoothStatus
+    }
+
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode == REQUEST_ENABLE_BT){ // 2019.07.17 Jerry: Is bluetooth already enabled
+			if(resultCode == RESULT_OK){
+				Toast.makeText(getBaseContext(), R.string.bt_is_now_enabled, Toast.LENGTH_SHORT).show();
+			}
+			else if(resultCode == RESULT_CANCELED){ // 2019.07.17 Jerry: if not, App will be shutdown in 1 second.
+				Toast.makeText(getBaseContext(), R.string.app_will_be_shutdown, Toast.LENGTH_SHORT).show();
+				finish();
+			}
+		}
+	}
     
 	public void onClick(View v) {
 		switch (v.getId()) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JDY-MESH测试</string>
+    <string name="app_name">JDY-MESH</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -10,16 +10,19 @@
 
     
     <string name="ble_not_supported">BLE is not supported</string>
-    <string name="label_data">特征：0xffe1 APP串口透传</string>
-    <string name="label_device_address">MAC地址:</string>
-    <string name="label_state">连接状态:</string>
+    <string name="please_open_bt">Please Open Bluetooth</string>
+    <string name="bt_is_now_enabled">Bluetooth is now Enabled</string>
+    <string name="app_will_be_shutdown">App will be shutdown in 1 second</string>
+    <string name="label_data">特徵：0xFFE1 APP串口透傳</string>
+    <string name="label_device_address">MAC 位址:</string>
+    <string name="label_state">連線狀態:</string>
     <string name="no_data">No data</string>
-    <string name="connected">已连接</string>
-    <string name="connecting">连接中....</string>
-    <string name="disconnected">断开连接</string>
+    <string name="connected">已連線</string>
+    <string name="connecting">連線中....</string>
+    <string name="disconnected">中斷連線</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
 
-    <string name="TXD">特征：0xffe1 APP串口发送</string>
+    <string name="TXD">特徵：0xFFE1 APP串口發送</string>
  
 
 
@@ -31,10 +34,10 @@
     <string name="unknown_service">Unknown service</string>
 
     <!-- Menu items -->
-    <string name="menu_connect">连接设备</string>
-    <string name="menu_disconnect">断开连接</string>
-    <string name="menu_scan">扫描设备</string>
-    <string name="menu_stop">停止扫描</string>
+    <string name="menu_connect">連線裝置</string>
+    <string name="menu_disconnect">中斷連線</string>
+    <string name="menu_scan">搜尋裝置</string>
+    <string name="menu_stop">停止搜尋</string>
 
     
     
