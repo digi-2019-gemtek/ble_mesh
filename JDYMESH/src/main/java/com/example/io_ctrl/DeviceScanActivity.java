@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,6 +68,7 @@ public class DeviceScanActivity extends Activity implements OnClickListener  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v("DeviceScanActivity", "onCreate_Start"); // Start onCreate
         setContentView(R.layout.activity_main);
         
         //getActionBar().setTitle(R.string.title_devices);
@@ -137,6 +139,7 @@ public class DeviceScanActivity extends Activity implements OnClickListener  {
 				}
 			}
 		});
+        Log.v("DeviceScanActivity", "onCreate_End"); // End onCreate
     }
     
 	public void onClick(View v) {
