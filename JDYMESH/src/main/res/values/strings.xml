@@ -10,6 +10,9 @@
 
     
     <string name="ble_not_supported">BLE is not supported</string>
+    <string name="please_open_bt">Please Open Bluetooth</string>
+    <string name="bt_is_now_enabled">Bluetooth is now Enabled</string>
+    <string name="app_will_be_shutdown">App will be shutdown in 1 second</string>
     <string name="label_data">特徵：0xFFE1 APP串口透傳</string>
     <string name="label_device_address">MAC 位址:</string>
     <string name="label_state">連線狀態:</string>
