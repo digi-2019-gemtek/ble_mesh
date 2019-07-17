@@ -229,13 +229,13 @@ public  class DeviceScanActivity extends Activity implements OnClickListener  {
 	};
 
 	@Override
-	protected void onResume() {//打开APP时扫描设备
+	protected void onResume() {//Reopen App Scan Devices
 		super.onResume();
 		scanLeDevice(true);
 	}
 
 	@Override
-	protected void onPause() {//停止扫描
+	protected void onPause() {//onPause App Stop Scan Devices
 		super.onPause();
 		scanLeDevice(false);
 	}
