@@ -1,19 +1,20 @@
-language: android
-android:
-  components:
-  - build-tools-28.0.3
-  - $ANDROID_TARGET
-  - extra-android-support
-env:
-  matrix:
-  - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
-before_script:
-  - echo y | android update sdk --no-ui --all --filter addon-google_apis-google-23
-  - echo y | android update sdk --no-ui --all --filter sys-img-armeabi-v7a-google_apis-23
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi "google_apis/armeabi-v7a" -c 100M
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - curl https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/community-cookbooks/android-sdk/files/default/android-wait-for-emulator > android-wait-for-emulator
-  - chmod u+x android-wait-for-emulator
-  - ./android-wait-for-emulator
-  - adb shell input keyevent 82 &
+language: android   # 声明构建语言环境
 
+notifications:      # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置 false 吧
+  email: false
+
+sudo: false         # sudo 权限
+
+android:            # 配置信息
+  components:
+    - tools
+    - build-tools-28.0.3
+    - android-23
+    - extra-android-m2repository     # Android Support Repository
+    - extra-android-support          # Support Library
+
+before_install:
+  - chmod +x gradlew  # 改变 gradlew 的访问权限
+
+script:              # 执行:下面的命令
+  - ./gradlew assembleRelease
