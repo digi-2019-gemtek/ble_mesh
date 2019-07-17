@@ -18,7 +18,6 @@ package com.example.io_ctrl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -48,7 +47,7 @@ import android.widget.ToggleButton;
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
  */
-public  class DeviceScanActivity extends Activity implements OnClickListener  {
+public class DeviceScanActivity extends Activity implements OnClickListener  {
    // private LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning;
@@ -63,8 +62,8 @@ public  class DeviceScanActivity extends Activity implements OnClickListener  {
 	TextView btn_searchDev;
 	Button btn_aboutUs;
 	ListView lv_bleList;
+
 	
-	Timer timer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
