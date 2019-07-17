@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.example.io_ctrl"
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion 23
+        targetSdkVersion 23
+        versionCode 0
+        versionName "0.1"
     }
 
     buildTypes {
@@ -19,6 +21,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-v4:22.2.1'
+    implementation 'com.android.support:support-v4:23.4.0'
     implementation files('libs/DeviceListAdapter.jar')
 }
