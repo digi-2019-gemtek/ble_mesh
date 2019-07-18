@@ -49,7 +49,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
+import android.widget.ToggleButton;//
 
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
