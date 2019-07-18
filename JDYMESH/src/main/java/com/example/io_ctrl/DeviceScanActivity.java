@@ -52,7 +52,7 @@ public class DeviceScanActivity extends Activity implements OnClickListener  {
    // private LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothManager mBluetoothManager = null;
     private BluetoothAdapter mBluetoothAdapter = null;
-    private boolean mScanning;
+    private boolean mScanning = false;
     private Handler mHandler;
     
     private static final int REQUEST_ENABLE_BT = 1;
