@@ -1,11 +1,11 @@
-language: android   # 声明构建语言环境
+language: android   # 建置環境
 
-notifications:      # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置 false 吧
+notifications:      # 建構通知
   email: false
 
-sudo: false         # sudo 权限
+sudo: false         # sudo 權限
 
-android:            # 配置信息
+android:            # 設定訊息
   components:
     - tools
     - build-tools-28.0.3
@@ -14,7 +14,7 @@ android:            # 配置信息
     - extra-android-support          # Support Library
 
 before_install:
-  - chmod +x gradlew  # 改变 gradlew 的访问权限
+  - chmod +x gradlew  # 更改 gradlew 的執行權限
 
-script:              # 执行:下面的命令
+script:              # 執行命令
   - ./gradlew assembleRelease
