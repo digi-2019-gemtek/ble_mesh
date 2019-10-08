@@ -128,8 +128,7 @@ public class DeviceControlActivity extends Activity implements SeekBar.OnSeekBar
             final String action = intent.getAction();
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 //mConnected = true;
-                
-                
+
                 connect_status_bit=true;
                
                 invalidateOptionsMenu();
@@ -373,6 +372,7 @@ public class DeviceControlActivity extends Activity implements SeekBar.OnSeekBar
         
         rx_data_id_1=(EditText)findViewById(R.id.rx_data_id_1);//1002 data
         rx_data_id_1.setText("");
+
 
         key1 = (ToggleButton)findViewById(R.id.mesh_io_button);
 //        key2 = (ToggleButton)findViewById(R.id.toggleButton2);

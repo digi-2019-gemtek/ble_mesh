@@ -106,9 +106,9 @@ public class DeviceScanActivity extends Activity implements OnClickListener  {
 		lv_bleList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				if (mDevListAdapter.getCount() > 0) {
+					Log.e("DeviceScanActivity", "onCreate_Start");
 					/*
 					BluetoothDevice device = mDevListAdapter.getItem(position);
 					Intent intent = new Intent(DeviceScanActivity.this,
@@ -142,11 +142,11 @@ public class DeviceScanActivity extends Activity implements OnClickListener  {
         Log.v("DeviceScanActivity", "checkBluetoothStatus_Start"); // Start checkBluetoothStatus
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
-        if (mBluetoothAdapter == null) {
+        /*if (mBluetoothAdapter == null) {
             Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
             finish();
         }
-        else if(!mBluetoothAdapter.isEnabled()) {
+        else */ if(!mBluetoothAdapter.isEnabled()) {
             Toast.makeText(getBaseContext(), R.string.please_open_bt, Toast.LENGTH_SHORT).show();
             Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBluetooth, REQUEST_ENABLE_BT);
